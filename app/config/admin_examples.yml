@@ -1,0 +1,80 @@
+# If you just need a quick backend for your Symfony application, the only
+# configuration you need is the list of entities:
+#
+# easy_admin:
+#     entities:
+#         - AppBundle\Entity\Category
+#         - AppBundle\Entity\Image
+#         - AppBundle\Entity\Purchase
+#         - AppBundle\Entity\PurchaseItem
+#         - AppBundle\Entity\Product
+
+# This demo application is prepared to showcase most of the EasyAdmin features.
+# That's why the backend configuration is much more detailed. All these options
+# are explained in detail in the bundle documentation, which is published at
+# https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    site_name: 'ACME Backend'
+    design:
+        form_theme:   'horizontal'
+        color_scheme: 'dark'
+    entities:
+        Category:
+            class: AppBundle\Entity\Category
+            label: 'Categories'
+            new:
+                fields:
+                    - 'name'
+                    - { property: 'parent', type_options: { placeholder: 'Select a category...' } }
+            edit:
+                fields:
+                    - 'name'
+                    - 'parent'
+            list:
+                actions:
+                    - { name: 'new', label: 'New %%entity_name%%', icon: 'plus-circle' }
+                    - { name: 'search', label: 'Look for %%entity_name%%' }
+                title: 'Product %%entity_name%%'
+                fields:
+                    - 'id'
+                    - { property: 'name', label: 'Label' }
+                    - { property: 'parent', label: 'Parent category' }
+        Image:
+            class: AppBundle\Entity\Image
+            label: 'Images'
+        Purchase:
+            class: AppBundle\Entity\Purchase
+            label: 'Purchases'
+        PurchaseItem:
+            class: AppBundle\Entity\PurchaseItem
+            label: 'Purchase Items'
+        Product:
+            class: AppBundle\Entity\Product
+            label: 'Products'
+            list:
+                fields:
+                    - id
+                    - name
+                    - { property: 'price', format: '%.2f' }
+                    - { property: 'ean', label: 'EAN13', type: 'string' }
+                    - enabled
+                    - { property: 'createdAt', format: 'j / M / Y' }
+                    - tags
+            show:
+                fields:
+                    - id
+                    - name
+                    - { property: 'ean', type: 'string' }
+                    - description
+                    - price
+                    - features
+                    - enabled
+                    - createdAt
+            form:
+                fields:
+                    - 'name'
+                    - { property: price, type: 'number', help: 'Prices are always in euros' }
+                    - { property: 'ean', label: 'EAN', help: 'EAN 13 valid code. Leave empty if unknown.' }
+                    - 'enabled'
+                    - 'description'
+                    - createdAt

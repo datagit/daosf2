@@ -1,0 +1,198 @@
+#sdocument: https://github.com/javiereguiluz/EasyAdminBundle
+easy_admin:
+    site_name: My CMS
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'F j, Y H:i'
+    list:
+        max_results: 20
+    design:
+        form_theme: 'vertical'
+        # this backend uses turquoise as its main color
+        brand_color: 'rgba(26, 188, 156, 0.85)'
+    entities:
+        User:
+            #disabled_actions: ['delete', 'edit', 'restock']
+            label: 'User Web Master'
+            class: Dao\DataSourceBundle\Entity\User
+            search:
+                fields: ['id', 'username', 'email', 'lastLogin', 'enabled', 'locked']
+            list:
+                title: "User list"
+                fields: ['id', 'username', 'email', 'lastLogin', 'enabled', 'locked']
+                actions: ['-show']
+            form:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'plainPassword', type: 'password', label: 'Password', help: 'Passwords must have at least 8 characters' }
+                    - { property: 'enabled', type: 'checkbox' }
+                    - { property: 'locked', type: 'checkbox' }
+
+        Category:
+            #disabled_actions: ['delete', 'edit', 'restock']
+            label: 'Categories'
+            class: Dao\DataSourceBundle\Entity\Category
+            search:
+                fields: ['id', 'name', 'slug']
+            list:
+                title: "Category list"
+                fields: ['id', 'parent', 'name', 'enabled', 'createdAt', 'updatedAt']
+                actions:
+                    - { name: 'show', icon: 'search', label: false }
+                    - { name: 'edit', icon: 'pencil', label: false }
+            form:
+                fields:
+                    - { property: 'parent' }
+                    - { property: 'name' }
+                    - { property: 'enabled', type: 'checkbox' }
+
+        Product:
+            #disabled_actions: ['delete', 'edit', 'restock']
+            label: 'Products'
+            class: Dao\DataSourceBundle\Entity\Product
+            image_base_path: '%web_root%/uploads/posts/'
+            search:
+                fields: ['id', 'name', 'slug']
+            list:
+                title: "Product list"
+                fields: ['id', 'category', 'name', { property: 'photo', type: 'image' }, 'tags', 'ean', 'features', 'price', 'description', 'enabled', 'createdAt', 'updatedAt']
+                actions:
+                    - { name: 'show', icon: 'search', label: false }
+                    - { name: 'edit', icon: 'pencil', label: false }
+            form:
+                fields:
+                    - { property: 'category' }
+                    - { property: 'name' }
+                    - { property: 'photoFile', type: 'file', label: 'Upload photo', help: 'Select file to upload / change photo' }
+                    - { property: 'tags' }
+                    - { property: 'ean' }
+                    - { property: 'features' }
+                    - { property: 'price' }
+                    - { property: 'description' }
+                    - { property: 'enabled', type: 'checkbox' }
+
+        #customer entity
+        Customer:
+            class: Dao\DataSourceBundle\Entity\Customer
+            image_base_path: '%web_root%/uploads/customers/'
+            list:
+                fields:
+                    - user
+                    - name
+                    - { property: 'logo', type: 'image' }
+                    - active
+                    - email
+                    - createdAt
+                actions:
+                    - { name: 'show', icon: 'search', label: false }
+                    - { name: 'edit', icon: 'pencil', label: false }
+            show:
+                fields:
+                    - user
+                    - name
+                    - { property: 'logo', type: 'image' }
+                    - firstName
+                    - lastName
+                    - email
+                    - phone
+                    - companyName
+                    - website
+            form:
+                fields:
+                    - user
+                    - name
+                    - { property: 'logoFile', type: 'file', label: 'Upload logo', help: 'Select file to upload / change logo' }
+                    - firstName
+                    - { property: 'lastname', type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - phone
+                    - companyName
+                    - website
+                    - active
+        #post entity
+        # https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/getting-started/4-views-and-actions.md
+        # https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/tutorials/customizing-backend-actions.md
+        Post:
+            label: 'Article Store'
+            class: Dao\DataSourceBundle\Entity\Post
+            search:
+                fields: ['id', 'title', 'slug', 'tags', 'authorEmail', 'publishedAt', 'updatedAt', 'createdAt']
+            # image_base_path: 'http://static.acme.org/img/'
+            image_base_path: '%web_root%/uploads/posts/'
+            list:
+                title: 'Article List'
+                fields:
+                    - id
+                    - title
+                    - { property: 'photo', type: 'image' }
+                    - slug
+                    #- summary
+                    - tags
+                    - { property: 'publishedAt', format: 'F j, Y' }
+                    - authorEmail
+                    - updatedAt
+                    - createdAt
+                actions:
+                    - { name: 'show', icon: 'search', label: false }
+                    - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'restock', type: 'method' }
+            show:
+                fields:
+                    - id
+                    - title
+                    - { property: 'photo', type: 'image' }
+                    - slug
+                    - { property: 'summary', type: 'textarea' }
+                    - { property: 'content', type: 'textarea' }
+                    - tags
+                    - publishedAt
+                    - authorEmail
+                    - updatedAt
+                    - createdAt
+            form:
+                fields:
+                    - title
+                    - { property: 'summary', type: 'textarea' }
+                    - { property: 'content', type: 'textarea' }
+                    - tags
+                    - { property: 'photoFile', type: 'file', label: 'Upload photo', help: 'Select file to upload / change photo' }
+                    - authorEmail
+                    - publishedAt
+        #Comment entity
+        Comment:
+            label: 'User Comment'
+            class: Dao\DataSourceBundle\Entity\Comment
+            list:
+                title: 'Comment List'
+                fields:
+                    - id
+                    - post
+                    #- { property: 'logo', type: 'image', base_path: 'http://localhost/sf2-easyadmin/web/images/customers/' }
+                    - comment
+                    - authorEmail
+                    - { property: 'publishedAt', format: 'F j, Y' }
+                    - updatedAt
+                    - createdAt
+                actions:
+                    - { name: 'show', icon: 'search', label: false }
+                    - { name: 'edit', icon: 'pencil', label: false }
+            show:
+                fields:
+                    - id
+                    - post
+                    #- { property: 'logo', type: 'image', base_path: 'http://localhost/sf2-easyadmin/web/images/customers/' }
+                    - comment
+                    - authorEmail
+                    - publishedAt
+                    - updatedAt
+                    - createdAt
+            form:
+                form_options: { validation_groups: ['Default', 'my_validation_group'] }
+                fields:
+                    - post
+                    - { property: 'comment', type: 'textarea', label: 'Comment', class: 'none_tinymce' }
+                    #- { property: 'logoFile', type: 'file', label: 'Upload logo', help: 'Select file to upload / change logo' }
+                    - authorEmail
+                    - publishedAt

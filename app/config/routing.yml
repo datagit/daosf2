@@ -1,0 +1,31 @@
+dao_data_source:
+    resource: "@DaoDataSourceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+dao_examples:
+    resource: "@DaoExamplesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+# fos_user
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# resize image: https://github.com/liip/LiipImagineBundle
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+# resize image
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+# easy_admin_bundle
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /_secrect_backend

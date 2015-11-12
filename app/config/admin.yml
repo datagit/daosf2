@@ -93,43 +93,43 @@ easy_admin:
                     - { property: 'enabled', type: 'checkbox' }
 
         #customer entity
-        Customer:
-            class: Dao\DataSourceBundle\Entity\Customer
-            image_base_path: '%web_root%/uploads/customers/'
-            list:
-                fields:
-                    - user
-                    - name
-                    - { property: 'logo', type: 'image' }
-                    - active
-                    - email
-                    - createdAt
-                actions:
-                    - { name: 'show', icon: 'search', label: false }
-                    - { name: 'edit', icon: 'pencil', label: false }
-            show:
-                fields:
-                    - user
-                    - name
-                    - { property: 'logo', type: 'image' }
-                    - firstName
-                    - lastName
-                    - email
-                    - phone
-                    - companyName
-                    - website
-            form:
-                fields:
-                    - user
-                    - name
-                    - { property: 'logoFile', type: 'file', label: 'Upload logo', help: 'Select file to upload / change logo' }
-                    - firstName
-                    - { property: 'lastname', type: 'text' }
-                    - { property: 'email', type: 'email' }
-                    - phone
-                    - companyName
-                    - website
-                    - active
+#        Customer:
+#            class: Dao\DataSourceBundle\Entity\Customer
+#            image_base_path: '%web_root%/uploads/customers/'
+#            list:
+#                fields:
+#                    - user
+#                    - name
+#                    - { property: 'logo', type: 'image' }
+#                    - active
+#                    - email
+#                    - createdAt
+#                actions:
+#                    - { name: 'show', icon: 'search', label: false }
+#                    - { name: 'edit', icon: 'pencil', label: false }
+#            show:
+#                fields:
+#                    - user
+#                    - name
+#                    - { property: 'logo', type: 'image' }
+#                    - firstName
+#                    - lastName
+#                    - email
+#                    - phone
+#                    - companyName
+#                    - website
+#            form:
+#                fields:
+#                    - user
+#                    - name
+#                    - { property: 'logoFile', type: 'file', label: 'Upload logo', help: 'Select file to upload / change logo' }
+#                    - firstName
+#                    - { property: 'lastname', type: 'text' }
+#                    - { property: 'email', type: 'email' }
+#                    - phone
+#                    - companyName
+#                    - website
+#                    - active
         #post entity
         # https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/getting-started/4-views-and-actions.md
         # https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/tutorials/customizing-backend-actions.md

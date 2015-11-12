@@ -13,23 +13,23 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdmin
 
 class AdminController extends EasyAdminController
 {
-//    public function prePersistEntity($entity) {
-//        $logger = $this->get('logger');
-//        $logger->info('event prePersistEntity in admin. ' . $entity);
-//
-//    }
-//
-//    public function preUpdateEntity($entity) {
-//        $logger = $this->get('logger');
-//        $logger->info('event preUpdateEntity in admin. ' . $entity);
-//
-//    }
-//
-//    public function preRemoveEntity($entity) {
-//        $logger = $this->get('logger');
-//        $logger->info('event preRemoveEntity in admin. ' . $entity);
-//
-//    }
+    public function prePersistEntity($entity) {
+        $logger = $this->get('logger');
+        $logger->info('event prePersistEntity in admin. ' . serialize($entity));
+
+    }
+
+    public function preUpdateEntity($entity) {
+        $logger = $this->get('logger');
+        $logger->info('event preUpdateEntity in admin. ' . serialize($entity));
+
+    }
+
+    public function preRemoveEntity($entity) {
+        $logger = $this->get('logger');
+        $logger->info('event preRemoveEntity in admin. ' . serialize($entity));
+
+    }
 
     public function restockAction()
     {

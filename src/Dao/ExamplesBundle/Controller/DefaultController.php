@@ -26,7 +26,7 @@ class DefaultController extends Controller
 
         $yaml = new Parser();
 
-        $value = $yaml->parse(file_get_contents('/var/www/html/dao/DaoSf2/app/config/parameters.yml'));
+        $value = $yaml->parse(file_get_contents('/var/www/html/dao/daosf2/app/config/parameters.yml'));
         echo '<pre>';
         print_r($value);
         return array('name' => 'examples');

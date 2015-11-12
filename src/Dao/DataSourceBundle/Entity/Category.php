@@ -57,7 +57,7 @@ class Category
      *
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank(message = "category.is.required")
+     * @Assert\NotBlank(message = "Vui lòng nhập tên danh mục.")
      */
     protected $name = null;
 

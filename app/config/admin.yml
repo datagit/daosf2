@@ -14,12 +14,12 @@ easy_admin:
     entities:
         User:
             #disabled_actions: ['delete', 'edit', 'restock']
-            label: 'User Web Master'
+            label: 'User'
             class: Dao\DataSourceBundle\Entity\User
             search:
                 fields: ['id', 'username', 'email', 'lastLogin', 'enabled', 'locked']
             list:
-                title: "User list"
+                title: "Danh sách user"
                 fields: ['id', 'username', 'email', 'lastLogin', 'enabled', 'locked']
                 actions: ['-show']
             form:
@@ -32,45 +32,64 @@ easy_admin:
 
         Category:
             #disabled_actions: ['delete', 'edit', 'restock']
-            label: 'Categories'
+            label: 'Danh mục'
             class: Dao\DataSourceBundle\Entity\Category
             search:
                 fields: ['id', 'name', 'slug']
             list:
-                title: "Category list"
-                fields: ['id', 'parent', 'name', 'enabled', 'createdAt', 'updatedAt']
+                title: 'Danh sách danh mục'
+                fields:
+                    - { property: 'id' }
+                    - { property: 'parent', label: 'Danh mục cha' }
+                    - { property: 'name', label: 'Danh mục' }
+                    - { property: 'createdAt', label: 'Ngày tạo' }
+                    - { property: 'updatedAt', label: 'Ngày cập nhật' }
+                #['id', 'parent', 'name', 'enabled', 'createdAt', 'updatedAt']
                 actions:
                     - { name: 'show', icon: 'search', label: false }
                     - { name: 'edit', icon: 'pencil', label: false }
             form:
+                #disable validate at server=> form_options: { validation_groups: [attr: 'novalidate'] }
                 fields:
-                    - { property: 'parent' }
-                    - { property: 'name' }
+                    - { property: 'parent', label: 'Danh mục cha' }
+                    - { property: name, type: 'text', label: 'Danh mục*' }
                     - { property: 'enabled', type: 'checkbox' }
 
         Product:
             #disabled_actions: ['delete', 'edit', 'restock']
-            label: 'Products'
+            label: 'Sản phẩm'
             class: Dao\DataSourceBundle\Entity\Product
             image_base_path: '%web_root%/uploads/posts/'
             search:
-                fields: ['id', 'name', 'slug']
+                fields: ['id', 'name', 'slug', 'ean', 'price', 'description']
             list:
-                title: "Product list"
-                fields: ['id', 'category', 'name', { property: 'photo', type: 'image' }, 'tags', 'ean', 'features', 'price', 'description', 'enabled', 'createdAt', 'updatedAt']
+                title: "Danh sách sản phẩm"
+                fields:
+                    - { property: 'id' }
+                    - { property: 'ean', label: 'Mã SP' }
+                    - { property: 'name', label: 'Sản phẩm' }
+                    - { property: 'category', label: 'Danh mục' }
+                    - { property: 'photo', type: 'image', label: 'Hình' }
+                    - { property: 'price', label: 'Giá' }
+                    - { property: 'features', label: 'Tính năng' }
+                    - { property: 'description', label: 'Mô tả' }
+                    - { property: 'enabled' }
+                    - { property: 'createdAt', label: 'Ngày tạo' }
+                    - { property: 'updatedAt', label: 'Ngày cập nhật' }
+                #['id', 'category', 'name', { property: 'photo', type: 'image' }, 'tags', 'ean', 'features', 'price', 'description', 'enabled', 'createdAt', 'updatedAt']
                 actions:
                     - { name: 'show', icon: 'search', label: false }
                     - { name: 'edit', icon: 'pencil', label: false }
             form:
                 fields:
-                    - { property: 'category' }
-                    - { property: 'name' }
-                    - { property: 'photoFile', type: 'file', label: 'Upload photo', help: 'Select file to upload / change photo' }
+                    - { property: 'ean', label: 'Mã sản phẩm*' }
+                    - { property: 'name', label: 'Sản phẩm*' }
+                    - { property: 'category', label: 'Danh mục' }
+                    - { property: 'photoFile', type: 'file', label: 'Hình sản phẩm', help: 'Chọn hình/thay đổi hình' }
+                    - { property: 'price', label: 'Giá' }
+                    - { property: 'description', label: 'Mô tả' }
+                    - { property: 'features', label: 'Tính năng' }
                     - { property: 'tags' }
-                    - { property: 'ean' }
-                    - { property: 'features' }
-                    - { property: 'price' }
-                    - { property: 'description' }
                     - { property: 'enabled', type: 'checkbox' }
 
         #customer entity

@@ -2,12 +2,10 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
-
-                <source>Category is required</source>
-                <target>Please enter a category.</target>
+            <!-- generic text for form -->
+            <trans-unit id="category.is.required">
+                <source>category.is.required</source>
+                <target>Category is required123 datasource.</target>
             </trans-unit>
         </body>
     </file>

@@ -58,6 +58,7 @@ class Product
      *
      * @var string
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank(message = "Vui lòng nhập tên sản phẩm.")
      */
     protected $name;
 
@@ -74,7 +75,7 @@ class Product
      * List of tags associated to the product.
      *
      * @var string[]
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="simple_array", length=255, nullable=true)
      */
     protected $tags = array();
 
@@ -83,6 +84,7 @@ class Product
      *
      * @var string
      * @ORM\Column(type="bigint")
+     * @Assert\NotBlank(message = "Vui lòng nhập mã sản phẩm.")
      */
     protected $ean;
 
@@ -103,7 +105,7 @@ class Product
      * )</pre>.
      *
      * @var array
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="array", nullable=true)
      */
     protected $features = array();
 
@@ -111,7 +113,9 @@ class Product
      * The price of the product.
      *
      * @var float
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type(type="float", message="Vui lòng nhập giá đúng định dạng.")
+     *
      */
     protected $price = 0.0;
 
@@ -119,7 +123,7 @@ class Product
      * The description of the product.
      *
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $description;
 

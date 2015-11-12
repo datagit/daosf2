@@ -24,8 +24,8 @@ easy_admin:
             label: 'Categories'
             new:
                 fields:
-                    - 'name'
-                    - { property: 'parent', type_options: { placeholder: 'Select a category...' } }
+                    - { property: 'name'}
+                    - { property: 'parent' }
             edit:
                 fields:
                     - 'name'
@@ -39,6 +39,12 @@ easy_admin:
                     - 'id'
                     - { property: 'name', label: 'Label' }
                     - { property: 'parent', label: 'Parent category' }
+            form:
+                fields:
+                    - { property: name, type: 'number', help: 'Prices are always in euros' }
+                    - { property: 'parent', label: 'parent', help: 'EAN 13 valid code. Leave empty if unknown.' }
+                    - 'enabled'
+                    - createdAt
         Image:
             class: AppBundle\Entity\Image
             label: 'Images'

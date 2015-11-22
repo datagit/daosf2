@@ -75,9 +75,9 @@ class Product
      * The name of the product.
      *
      * @var string
-     * @ORM\Column(name="local", type="string", length=255, nullable=true)
+     * @ORM\Column(name="lang", type="string", length=255, nullable=true)
      */
-    protected $local = 'en';
+    protected $lang = 'en';
 
     /**
      * List of tags associated to the product.
@@ -557,18 +557,18 @@ class Product
     /**
      * @return mixed
      */
-    public function getLocal()
+    public function getLang()
     {
-        return $this->local;
+        return $this->lang;
     }
 
     /**
-     * @param mixed $local
+     * @param mixed $lang
      * @return Product
      */
-    public function setLocal($local)
+    public function setLang($lang)
     {
-        $this->local = $local;
+        $this->lang = $lang;
         return $this;
     }
 

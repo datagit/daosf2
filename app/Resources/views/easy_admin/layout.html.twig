@@ -62,10 +62,9 @@
                                 {% endfor %}
                                 {#dat.dao custom#}
                                 <li>
-                                    <a href="{{ url('admin_export') }}">Export Data</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('admin_my_config') }}">Config</a>
+                                    <a href="{{ url('admin_my_config') }}">
+                                        {{ 'system.info'|trans }}
+                                    </a>
                                 </li>
                             {% endblock %}
                         </ul>

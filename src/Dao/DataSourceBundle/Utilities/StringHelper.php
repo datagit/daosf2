@@ -8,7 +8,6 @@
 
 namespace Dao\DataSourceBundle\Utilities;
 
-
 class StringHelper {
 
     public static function isMatch($fullEntity, array $entities) {

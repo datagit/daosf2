@@ -8,6 +8,7 @@
 
 namespace Dao\BackendBundle\Controller;
 
+use Dao\DataSourceBundle\Utilities\LanguageSupport;
 use Dao\DataSourceBundle\Utilities\StringHelper;
 use Ladybug\Plugin\Symfony2\Inspector\Object\Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -39,9 +40,15 @@ class AdminController extends EasyAdminController
         ;
 
         //dat.dao custom where
+        $session = $this
+            ->container
+            ->get('request_stack')
+            ->getCurrentRequest()
+            ->getSession();
+        $lang = $session->get('lang') == '' ? $session->get('lang') : LanguageSupport::VietNam;
         if( ! StringHelper::isMatch($entityClass, array('User')) ) {
-            $query->where('entity.local = ?1')
-                ->setParameter(1, 'en');
+            $query->where('entity.lang = ?1')
+                ->setParameter(1, $lang);
         }
 
         if (null !== $sortField) {

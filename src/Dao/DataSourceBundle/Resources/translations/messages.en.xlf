@@ -2,44 +2,14 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <!-- generic actions displayed on buttons and links -->
-            <trans-unit id="action.new">
-                <source>action.new</source>
-                <target>Thêm %entity_name%</target>
-            </trans-unit>
-            <trans-unit id="action.show">
-                <source>action.show</source>
-                <target>Xem</target>
-            </trans-unit>
-            <trans-unit id="action.edit">
-                <source>action.edit</source>
-                <target>Cập nhật</target>
-            </trans-unit>
-            <trans-unit id="action.search">
-                <source>action.search</source>
-                <target>Tìm</target>
-            </trans-unit>
-            <trans-unit id="action.delete">
-                <source>action.delete</source>
-                <target>Xóa</target>
-            </trans-unit>
-            <trans-unit id="action.save">
-                <source>action.save</source>
-                <target>Lưu thay đổi</target>
-            </trans-unit>
-            <trans-unit id="action.cancel">
-                <source>action.cancel</source>
-                <target>Hủy</target>
-            </trans-unit>
-            <trans-unit id="action.list">
-                <source>action.list</source>
-                <target>Về trang danh sách</target>
-            </trans-unit>
+
             <!-- generic text for form -->
             <trans-unit id="category.is.required">
                 <source>category.is.required</source>
                 <target>Category is required.</target>
             </trans-unit>
+
+
 
 
 

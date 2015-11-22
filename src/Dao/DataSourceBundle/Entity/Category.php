@@ -104,6 +104,14 @@ class Category
      **/
     protected $products;
 
+    /**
+     * The name of the product.
+     *
+     * @var string
+     * @ORM\Column(name="lang", type="string", length=255, nullable=true)
+     */
+    protected $lang = 'en';
+
     //st tracking--------------
     /**
      * @var string $createdBy
@@ -362,4 +370,23 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * @param mixed $lang
+     * @return Product
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+        return $this;
+    }
+
 }

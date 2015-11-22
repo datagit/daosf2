@@ -2,6 +2,40 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
+            <!-- generic actions displayed on buttons and links -->
+            <trans-unit id="action.new">
+                <source>action.new</source>
+                <target>Thêm %entity_name%</target>
+            </trans-unit>
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Xem</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Sửa</target>
+            </trans-unit>
+            <trans-unit id="action.search">
+                <source>action.search</source>
+                <target>Tìm</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Xóa</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Lưu thay đổi</target>
+            </trans-unit>
+            <trans-unit id="action.cancel">
+                <source>action.cancel</source>
+                <target>Hủy</target>
+            </trans-unit>
+            <trans-unit id="action.list">
+                <source>action.list</source>
+                <target>Về trang danh sách</target>
+            </trans-unit>
+
             <!-- page titles -->
             <trans-unit id="new.page_title">
                 <source>new.page_title</source>
@@ -13,7 +47,7 @@
             </trans-unit>
             <trans-unit id="edit.page_title">
                 <source>edit.page_title</source>
-                <target>Cập nhật %entity_name% (#%entity_id%)</target>
+                <target>Sửa %entity_name% (#%entity_id%)</target>
             </trans-unit>
             <trans-unit id="list.page_title">
                 <source>list.page_title</source>
@@ -21,19 +55,19 @@
             </trans-unit>
             <trans-unit id="search.page_title">
                 <source>search.page_title</source>
-                <target><![CDATA[{0} Không tìm thấy|{1} <strong>1</strong> result found|]1,Inf] <strong>%count%</strong> Kết quả tìm kiếm]]></target>
+                <target><![CDATA[{0} No results found|{1} <strong>1</strong> result found|]1,Inf] <strong>%count%</strong> results found]]></target>
             </trans-unit>
 
             <!-- 'search' view -->
             <trans-unit id="search.no_results">
                 <source>search.no_results</source>
-                <target>Không tìm thấy.</target>
+                <target>No results found.</target>
             </trans-unit>
 
             <!-- 'list' view -->
             <trans-unit id="list.row_actions">
                 <source>list.row_actions</source>
-                <target>#</target>
+                <target>Actions</target>
             </trans-unit>
 
             <!-- paginator -->
@@ -58,32 +92,6 @@
                 <target><![CDATA[<strong>%start%</strong> - <strong>%end%</strong> of <strong>%results%</strong>]]></target>
             </trans-unit>
 
-            <!-- labels -->
-            <trans-unit id="label.true">
-                <source>label.true</source>
-                <target>Yes</target>
-            </trans-unit>
-            <trans-unit id="label.false">
-                <source>label.false</source>
-                <target>No</target>
-            </trans-unit>
-            <trans-unit id="label.empty">
-                <source>label.empty</source>
-                <target>Empty</target>
-            </trans-unit>
-            <trans-unit id="label.null">
-                <source>label.null</source>
-                <target>Null</target>
-            </trans-unit>
-            <trans-unit id="label.inaccessible">
-                <source>label.inaccessible</source>
-                <target>Inaccessible</target>
-            </trans-unit>
-            <trans-unit id="label.inaccessible.explanation">
-                <source>label.inaccessible.explanation</source>
-                <target>Getter method does not exist for this field or the property is not public</target>
-            </trans-unit>
-
             <!-- misc. elements -->
             <trans-unit id="header.close">
                 <source>header.close</source>
@@ -95,27 +103,22 @@
             </trans-unit>
             <trans-unit id="delete_modal.title">
                 <source>delete_modal.title</source>
-                <target>Bạn có thật sự muốn xóa không?</target>
+                <target>Do you really want to delete this item?</target>
             </trans-unit>
             <trans-unit id="delete_modal.content">
                 <source>delete_modal.content</source>
-                <target>Không thể phục hồi cho hoạt động này.</target>
+                <target>There is no undo for this operation.</target>
             </trans-unit>
-            <trans-unit id="action.add_new_item">
-                <source>action.add_new_item</source>
-                <target>Thêm mới một ITEM</target>
+
+            <!--dat.dao custom-->
+            <trans-unit id="system.info">
+                <source>system.info</source>
+                <target>Thông tin hệ thống</target>
             </trans-unit>
-            <trans-unit id="action.add_another_item">
-                <source>action.add_another_item</source>
-                <target>Thêm một ITEM khác</target>
-            </trans-unit>
-            <trans-unit id="action.remove_item">
-                <source>action.remove_item</source>
-                <target>Xóa ITEM này</target>
-            </trans-unit>
-            <trans-unit id="errors">
-                <source>errors</source>
-                <target>Error|Errors</target>
+
+            <trans-unit id="choice.language">
+                <source>choice.language</source>
+                <target>Chọn ngôn ngữ</target>
             </trans-unit>
         </body>
     </file>

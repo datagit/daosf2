@@ -48,6 +48,7 @@ easy_admin:
                 actions:
                     - { name: 'show', icon: 'search', label: false }
                     - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'copy', type: 'method', label: 'copy' }
             form:
                 #disable validate at server=> form_options: { validation_groups: [attr: 'novalidate'] }
                 fields:

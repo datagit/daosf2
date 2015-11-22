@@ -72,6 +72,14 @@ class Product
     protected $slug;
 
     /**
+     * The name of the product.
+     *
+     * @var string
+     * @ORM\Column(name="local", type="string", length=255, nullable=true)
+     */
+    protected $local = 'en';
+
+    /**
      * List of tags associated to the product.
      *
      * @var string[]
@@ -545,6 +553,25 @@ class Product
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLocal()
+    {
+        return $this->local;
+    }
+
+    /**
+     * @param mixed $local
+     * @return Product
+     */
+    public function setLocal($local)
+    {
+        $this->local = $local;
+        return $this;
+    }
+
 
 
 

@@ -80,6 +80,8 @@ easy_admin:
                 actions:
                     - { name: 'show', icon: 'search', label: false }
                     - { name: 'edit', icon: 'pencil', label: false }
+                    - { name: 'show', icon: 'search', label: false }
+                    - { name: 'copy', type: 'method', label: 'copy' }
             form:
                 fields:
                     - { property: 'ean', label: 'Mã sản phẩm*' }
@@ -133,85 +135,85 @@ easy_admin:
         #post entity
         # https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/getting-started/4-views-and-actions.md
         # https://github.com/javiereguiluz/EasyAdminBundle/blob/master/Resources/doc/tutorials/customizing-backend-actions.md
-        Post:
-            label: 'Article Store'
-            class: Dao\DataSourceBundle\Entity\Post
-            search:
-                fields: ['id', 'title', 'slug', 'tags', 'authorEmail', 'publishedAt', 'updatedAt', 'createdAt']
-            # image_base_path: 'http://static.acme.org/img/'
-            image_base_path: '%web_root%/uploads/posts/'
-            list:
-                title: 'Article List'
-                fields:
-                    - id
-                    - title
-                    - { property: 'photo', type: 'image' }
-                    - slug
-                    #- summary
-                    - tags
-                    - { property: 'publishedAt', format: 'F j, Y' }
-                    - authorEmail
-                    - updatedAt
-                    - createdAt
-                actions:
-                    - { name: 'show', icon: 'search', label: false }
-                    - { name: 'edit', icon: 'pencil', label: false }
-                    - { name: 'restock', type: 'method' }
-            show:
-                fields:
-                    - id
-                    - title
-                    - { property: 'photo', type: 'image' }
-                    - slug
-                    - { property: 'summary', type: 'textarea' }
-                    - { property: 'content', type: 'textarea' }
-                    - tags
-                    - publishedAt
-                    - authorEmail
-                    - updatedAt
-                    - createdAt
-            form:
-                fields:
-                    - title
-                    - { property: 'summary', type: 'textarea' }
-                    - { property: 'content', type: 'textarea' }
-                    - tags
-                    - { property: 'photoFile', type: 'file', label: 'Upload photo', help: 'Select file to upload / change photo' }
-                    - authorEmail
-                    - publishedAt
-        #Comment entity
-        Comment:
-            label: 'User Comment'
-            class: Dao\DataSourceBundle\Entity\Comment
-            list:
-                title: 'Comment List'
-                fields:
-                    - id
-                    - post
-                    #- { property: 'logo', type: 'image', base_path: 'http://localhost/sf2-easyadmin/web/images/customers/' }
-                    - comment
-                    - authorEmail
-                    - { property: 'publishedAt', format: 'F j, Y' }
-                    - updatedAt
-                    - createdAt
-                actions:
-                    - { name: 'show', icon: 'search', label: false }
-                    - { name: 'edit', icon: 'pencil', label: false }
-            show:
-                fields:
-                    - id
-                    - post
-                    #- { property: 'logo', type: 'image', base_path: 'http://localhost/sf2-easyadmin/web/images/customers/' }
-                    - comment
-                    - authorEmail
-                    - publishedAt
-                    - updatedAt
-                    - createdAt
-            form:
-                form_options: { validation_groups: ['Default', 'my_validation_group'] }
-                fields:
-                    - post
-                    - { property: 'comment', type: 'textarea', label: 'Comment', class: 'none_tinymce' }
-                    #- { property: 'logoFile', type: 'file', label: 'Upload logo', help: 'Select file to upload / change logo' }
-                    - authorEmail
-                    - publishedAt
+#        Post:
+#            label: 'Article Store'
+#            class: Dao\DataSourceBundle\Entity\Post
+#            search:
+#                fields: ['id', 'title', 'slug', 'tags', 'authorEmail', 'publishedAt', 'updatedAt', 'createdAt']
+#            # image_base_path: 'http://static.acme.org/img/'
+#            image_base_path: '%web_root%/uploads/posts/'
+#            list:
+#                title: 'Article List'
+#                fields:
+#                    - id
+#                    - title
+#                    - { property: 'photo', type: 'image' }
+#                    - slug
+#                    #- summary
+#                    - tags
+#                    - { property: 'publishedAt', format: 'F j, Y' }
+#                    - authorEmail
+#                    - updatedAt
+#                    - createdAt
+#                actions:
+#                    - { name: 'show', icon: 'search', label: false }
+#                    - { name: 'edit', icon: 'pencil', label: false }
+#                    - { name: 'restock', type: 'method' }
+#            show:
+#                fields:
+#                    - id
+#                    - title
+#                    - { property: 'photo', type: 'image' }
+#                    - slug
+#                    - { property: 'summary', type: 'textarea' }
+#                    - { property: 'content', type: 'textarea' }
+#                    - tags
+#                    - publishedAt
+#                    - authorEmail
+#                    - updatedAt
+#                    - createdAt
+#            form:
+#                fields:
+#                    - title
+#                    - { property: 'summary', type: 'textarea' }
+#                    - { property: 'content', type: 'textarea' }
+#                    - tags
+#                    - { property: 'photoFile', type: 'file', label: 'Upload photo', help: 'Select file to upload / change photo' }
+#                    - authorEmail
+#                    - publishedAt
+#        #Comment entity
+#        Comment:
+#            label: 'User Comment'
+#            class: Dao\DataSourceBundle\Entity\Comment
+#            list:
+#                title: 'Comment List'
+#                fields:
+#                    - id
+#                    - post
+#                    #- { property: 'logo', type: 'image', base_path: 'http://localhost/sf2-easyadmin/web/images/customers/' }
+#                    - comment
+#                    - authorEmail
+#                    - { property: 'publishedAt', format: 'F j, Y' }
+#                    - updatedAt
+#                    - createdAt
+#                actions:
+#                    - { name: 'show', icon: 'search', label: false }
+#                    - { name: 'edit', icon: 'pencil', label: false }
+#            show:
+#                fields:
+#                    - id
+#                    - post
+#                    #- { property: 'logo', type: 'image', base_path: 'http://localhost/sf2-easyadmin/web/images/customers/' }
+#                    - comment
+#                    - authorEmail
+#                    - publishedAt
+#                    - updatedAt
+#                    - createdAt
+#            form:
+#                form_options: { validation_groups: ['Default', 'my_validation_group'] }
+#                fields:
+#                    - post
+#                    - { property: 'comment', type: 'textarea', label: 'Comment', class: 'none_tinymce' }
+#                    #- { property: 'logoFile', type: 'file', label: 'Upload logo', help: 'Select file to upload / change logo' }
+#                    - authorEmail
+#                    - publishedAt

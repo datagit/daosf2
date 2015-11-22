@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "802365f8623dcb395adf5d23d6c4b22f",
-    "content-hash": "3008448790f32dde237766616b1b3978",
+    "hash": "1c692712486fd8968dca2b81c575463a",
+    "content-hash": "87c6b01691c7683c2701ea2c5729de3d",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -57,7 +57,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cocur/slugify/zipball/adae72720ac163e88797522c0b19f60cc384d071",
+                "url": "https://api.github.com/repos/cocur/slugify/zipball/e64b82956d127a93a34fe8c04095354fd4411199",
                 "reference": "adae72720ac163e88797522c0b19f60cc384d071",
                 "shasum": ""
             },
@@ -1343,50 +1343,32 @@
         },
         {
             "name": "javiereguiluz/easyadmin-bundle",
-            "version": "v1.8.2",
+            "version": "v1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/javiereguiluz/EasyAdminBundle.git",
-                "reference": "92a54f713f235b13415ff7f03a86d80ec406dd6a"
+                "reference": "fe386c6b4edc1a689b60abe54b4317fae6316826"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/92a54f713f235b13415ff7f03a86d80ec406dd6a",
-                "reference": "92a54f713f235b13415ff7f03a86d80ec406dd6a",
+                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/fe386c6b4edc1a689b60abe54b4317fae6316826",
+                "reference": "fe386c6b4edc1a689b60abe54b4317fae6316826",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "^2.4.0",
                 "doctrine/doctrine-bundle": "~1.2",
                 "doctrine/orm": "~2.3",
                 "pagerfanta/pagerfanta": "~1.0,>=1.0.1",
                 "php": ">=5.3.0",
                 "sensio/distribution-bundle": "~2.3|~3.0|~4.0",
                 "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-                "symfony/config": "~2.3",
-                "symfony/dependency-injection": "~2.3",
-                "symfony/doctrine-bridge": "~2.3",
-                "symfony/event-dispatcher": "~2.3",
-                "symfony/form": "~2.3",
-                "symfony/framework-bundle": "~2.3",
-                "symfony/http-foundation": "~2.3",
-                "symfony/http-kernel": "~2.3",
-                "symfony/twig-bridge": "^2.3.4",
+                "symfony/symfony": "~2.3",
                 "twig/extensions": "~1.0",
-                "twig/twig": "~1.14,>=1.14.2|~2.0"
+                "twig/twig": "~1.12,>=1.12.2"
             },
             "require-dev": {
                 "doctrine/doctrine-fixtures-bundle": "~2.2",
-                "phpunit/phpunit": "~4.4",
-                "symfony/browser-kit": "~2.3",
-                "symfony/console": "~2.3",
-                "symfony/css-selector": "~2.3",
-                "symfony/dom-crawler": "~2.3",
-                "symfony/finder": "~2.3",
-                "symfony/security-bundle": "~2.3",
-                "symfony/twig-bundle": "~2.3",
-                "symfony/validator": "~2.3",
-                "symfony/yaml": "~2.3"
+                "phpunit/phpunit": "~4.4"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1415,7 +1397,7 @@
                 "backend",
                 "generator"
             ],
-            "time": "2015-11-09 08:54:02"
+            "time": "2015-06-22 06:42:42"
         },
         {
             "name": "jdorn/sql-formatter",

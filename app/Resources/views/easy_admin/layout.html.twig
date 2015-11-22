@@ -60,6 +60,13 @@
                                         </a>
                                     </li>
                                 {% endfor %}
+                                {#dat.dao custom#}
+                                <li>
+                                    <a href="{{ url('admin_export') }}">Export Data</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('admin_my_config') }}">Config</a>
+                                </li>
                             {% endblock %}
                         </ul>
                     {% endblock header_menu %}
@@ -126,21 +133,21 @@
         {#</script>#}
         {#ed add code ckeditor for: http://ckeditor.com/download#}
         {#st add code tinymce#}
-        {#<script type="text/javascript" src="{{ asset('bundles/daodatasource/js/tinymce/tinymce.min.js') }}"></script>#}
+        <script type="text/javascript" src="{{ asset('bundles/daodatasource/js/tinymce/tinymce.min.js') }}"></script>
         <script type="text/javascript">
 
             $( document ).ready( function() {
                 $('#new-form, #edit-form').attr('novalidate', '');
 
-//                tinymce.init({
-//                    selector: "textarea[field_css_class!='none_tinymce']",
-//                    plugins: [
-//                        "advlist autolink lists link image charmap print preview anchor",
-//                        "searchreplace visualblocks code fullscreen",
-//                        "insertdatetime media table contextmenu paste imagetools"
-//                    ],
-//                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-//                });
+                tinymce.init({
+                    selector: "textarea[field_css_class!='none_tinymce']",
+                    plugins: [
+                        "advlist autolink lists link image charmap print preview anchor",
+                        "searchreplace visualblocks code fullscreen",
+                        "insertdatetime media table contextmenu paste imagetools"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                });
 
             });
 

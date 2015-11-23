@@ -45,7 +45,7 @@ class AdminController extends EasyAdminController
             ->get('request_stack')
             ->getCurrentRequest()
             ->getSession();
-        $lang = $session->get('lang') == '' ? $session->get('lang') : LanguageSupport::VietNam;
+        $lang = $session->get('lang') != null ? $session->get('lang') : LanguageSupport::VietNam;
         if( ! StringHelper::isMatch($entityClass, array('User')) ) {
             $query->where('entity.lang = ?1')
                 ->setParameter(1, $lang);
@@ -94,19 +94,19 @@ class AdminController extends EasyAdminController
 
     public function prePersistEntity($entity) {
         $logger = $this->get('logger');
-        $logger->info('event prePersistEntity in admin. ' . serialize($entity));
+        $logger->info('event prePersistEntity in admin. ');
 
     }
 
     public function preUpdateEntity($entity) {
         $logger = $this->get('logger');
-        $logger->info('event preUpdateEntity in admin. ' . serialize($entity));
+        $logger->info('event preUpdateEntity in admin. ');
 
     }
 
     public function preRemoveEntity($entity) {
         $logger = $this->get('logger');
-        $logger->info('event preRemoveEntity in admin. ' . serialize($entity));
+        $logger->info('event preRemoveEntity in admin. ');
 
     }
 

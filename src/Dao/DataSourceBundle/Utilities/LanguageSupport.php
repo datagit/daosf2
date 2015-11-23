@@ -9,7 +9,7 @@
 namespace Dao\DataSourceBundle\Utilities;
 
 
-class LanguageSupport extends SplEnum {
+abstract class LanguageSupport {
     const __default = self::VietNam;
 
     const VietNam = 'vn';

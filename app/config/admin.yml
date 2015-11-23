@@ -6,7 +6,7 @@ easy_admin:
         time:     'H:i'
         datetime: 'F j, Y H:i'
     list:
-        max_results: 20
+        max_results: 15
     design:
         form_theme: 'vertical'
         # this backend uses turquoise as its main color
@@ -42,25 +42,27 @@ easy_admin:
                     - { property: 'id' }
                     - { property: 'parent', label: 'Danh mục cha' }
                     - { property: 'name', label: 'Danh mục' }
+                    - { property: 'enabled', label: 'Trạng thái' }
                     - { property: 'createdAt', label: 'Ngày tạo' }
                     - { property: 'updatedAt', label: 'Ngày cập nhật' }
                 #['id', 'parent', 'name', 'enabled', 'createdAt', 'updatedAt']
                 actions:
                     - { name: 'show', icon: 'search', label: false }
                     - { name: 'edit', icon: 'pencil', label: false }
-                    - { name: 'copy', type: 'method', label: 'copy' }
+#                    - { name: 'copy', type: 'method', label: 'copy' }
             form:
                 #disable validate at server=> form_options: { validation_groups: [attr: 'novalidate'] }
                 fields:
                     - { property: 'parent', label: 'Danh mục cha' }
                     - { property: name, type: 'text', label: 'Danh mục*' }
                     - { property: 'enabled', type: 'checkbox' }
+                    - { property: 'lang' , label: 'Ngôn ngữ(vn, en)' }
 
         Product:
             #disabled_actions: ['delete', 'edit', 'restock']
             label: 'Sản phẩm'
             class: Dao\DataSourceBundle\Entity\Product
-            image_base_path: '%web_root%/uploads/posts/'
+            image_base_path: '%web_root%/uploads/'
             search:
                 fields: ['id', 'name', 'slug', 'ean', 'price', 'description']
             list:
@@ -74,7 +76,7 @@ easy_admin:
                     - { property: 'price', label: 'Giá' }
                     - { property: 'features', label: 'Tính năng' }
                     - { property: 'description', label: 'Mô tả' }
-                    - { property: 'enabled' }
+                    - { property: 'enabled', label: 'Trạng thái' }
                     - { property: 'createdAt', label: 'Ngày tạo' }
                     - { property: 'updatedAt', label: 'Ngày cập nhật' }
                 #['id', 'category', 'name', { property: 'photo', type: 'image' }, 'tags', 'ean', 'features', 'price', 'description', 'enabled', 'createdAt', 'updatedAt']
@@ -82,7 +84,7 @@ easy_admin:
                     - { name: 'show', icon: 'search', label: false }
                     - { name: 'edit', icon: 'pencil', label: false }
                     - { name: 'show', icon: 'search', label: false }
-                    - { name: 'copy', type: 'method', label: 'copy' }
+#                    - { name: 'copy', type: 'method', label: 'copy' }
             form:
                 fields:
                     - { property: 'ean', label: 'Mã sản phẩm*' }
@@ -94,6 +96,7 @@ easy_admin:
                     - { property: 'features', label: 'Tính năng' }
                     - { property: 'tags' }
                     - { property: 'enabled', type: 'checkbox' }
+                    - { property: 'lang', label: 'Ngôn ngữ(vn, en)' }
 
         #customer entity
 #        Customer:

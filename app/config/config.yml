@@ -107,11 +107,11 @@ vich_uploader:
     mappings:
         customer_image:
             uri_prefix:         /uploads/customers
-            upload_destination: %kernel.root_dir%/../web/uploads/customers
+            upload_destination: %kernel.root_dir%/../web/uploads
             namer:              vich_uploader.namer_uniqid
         post_image:
             uri_prefix:         /uploads/posts
-            upload_destination: %kernel.root_dir%/../web/uploads/posts
+            upload_destination: %kernel.root_dir%/../web/uploads
             namer:              vich_uploader.namer_uniqid
 
 # https://github.com/Atlantic18/DoctrineExtensions

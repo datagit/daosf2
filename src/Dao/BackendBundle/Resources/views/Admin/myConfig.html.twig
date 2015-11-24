@@ -11,38 +11,54 @@
     {{ 'system.info'|trans }}
 {% endblock %}
 
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{# {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %} #}
+
 {% block main %}
     <div class="bs-example">
-        <form class="form-horizontal">
 
-            <div class="form-group">
-                <label for="inputEmail" class="control-label col-xs-2">{{ 'choice.language'|trans }}</label>
-                <div class="col-xs-6">
-                    <select name="lang" id="lang" class="form-control input-sm"
-                            onchange="window.location='{{ url('admin_my_config') }}?lang=' + this.options[this.selectedIndex].value;
-                                    return false;">
-                        <option value="vn">Việt Nam</option>
-                        <option value="en">English</option>
-                    </select>
-                </div>
-            </div>
+        {#<form action="{{ path('task_new') }}" method="get" {{ form_enctype(form) }}>#}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_errors(form) }}
+        <div class="form-group">
+            {{ form_label(form.lang,'Chọn ngôn ngữ') }}
+            {{ form_errors(form.lang) }}
+            {{ form_widget(form.lang, { 'attr': {'class': 'span3'} }) }}
+        </div>
+        {{ form_end(form) }}
 
-            <div class="form-group">
-                <label for="inputEmail" class="control-label col-xs-2">Export data</label>
-                <div class="col-xs-6">
-                    <button type="submit"
-                            onclick="window.location='{{ url('admin_export') }}';return false;"
-                            class="btn btn-success">Exporting</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail" class="control-label col-xs-2">Import data</label>
-                <div class="col-xs-6">
-                    <button type="submit" onclick="" class="btn btn-warning">Importing</button>
-                </div>
-            </div>
+        {#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
 
-        </form>
+        {#<form class="form-horizontal">#}
+
+            {#<div class="form-group">#}
+                {#<label for="inputEmail" class="control-label col-xs-2">{{ 'choice.language'|trans }}</label>#}
+                {#<div class="col-xs-6">#}
+                    {#<select name="lang" id="lang" class="form-control input-sm"#}
+                            {#onchange="window.location='{{ url('admin_my_config') }}?lang=' + this.options[this.selectedIndex].value;#}
+                                    {#return false;">#}
+                        {#<option value="vn">Việt Nam</option>#}
+                        {#<option value="en">English</option>#}
+                    {#</select>#}
+                {#</div>#}
+            {#</div>#}
+
+            {#<div class="form-group">#}
+                {#<label for="inputEmail" class="control-label col-xs-2">Export data</label>#}
+                {#<div class="col-xs-6">#}
+                    {#<button type="submit"#}
+                            {#onclick="window.location='{{ url('admin_export') }}';return false;"#}
+                            {#class="btn btn-success">Exporting</button>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="form-group">#}
+                {#<label for="inputEmail" class="control-label col-xs-2">Import data</label>#}
+                {#<div class="col-xs-6">#}
+                    {#<button type="submit" onclick="" class="btn btn-warning">Importing</button>#}
+                {#</div>#}
+            {#</div>#}
+
+        {#</form>#}
     </div>
 
 {% endblock %}

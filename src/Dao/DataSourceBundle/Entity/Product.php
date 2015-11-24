@@ -82,10 +82,10 @@ class Product
     /**
      * List of tags associated to the product.
      *
-     * @var string[]
-     * @ORM\Column(type="simple_array", length=255, nullable=true)
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $tags = array();
+    protected $tags = '';
 
     /**
      * The EAN 13 of the product. (type set to string in PHP due to 32 bit limitation).
@@ -113,9 +113,9 @@ class Product
      * )</pre>.
      *
      * @var array
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    protected $features = array();
+    protected $features = '{ "size":"12 x 3 x 10 cm", "color":"white" }';
 
     /**
      * The price of the product.
@@ -337,7 +337,7 @@ class Product
     /**
      * Set tags
      *
-     * @param array $tags
+     * @param string $tags
      *
      * @return Product
      */
@@ -351,7 +351,7 @@ class Product
     /**
      * Get tags
      *
-     * @return array
+     * @return string
      */
     public function getTags()
     {

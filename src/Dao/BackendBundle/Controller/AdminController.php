@@ -8,6 +8,7 @@
 
 namespace Dao\BackendBundle\Controller;
 
+use Dao\BackendBundle\Entity\MyConfig;
 use Dao\DataSourceBundle\Utilities\LanguageSupport;
 use Dao\DataSourceBundle\Utilities\StringHelper;
 use Ladybug\Plugin\Symfony2\Inspector\Object\Symfony\Component\HttpFoundation\Request;
@@ -20,6 +21,47 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class AdminController extends EasyAdminController
 {
+    /**
+     * Performs a database query based on the search query provided by the user.
+     * It supports pagination and field sorting.
+     *
+     * @param string $entityClass
+     * @param string $searchQuery
+     * @param array  $searchableFields
+     * @param int    $page
+     * @param int    $maxPerPage
+     *
+     * @return Pagerfanta The paginated query results
+     */
+    protected function findBy($entityClass, $searchQuery, array $searchableFields, $page = 1, $maxPerPage = 15)
+    {
+        $queryBuilder = $this->em->createQueryBuilder()->select('entity')->from($entityClass, 'entity');
+
+        //st dat.dao custom where
+        $queryBuilder = $this->addWhereForCustom($queryBuilder, $entityClass);
+        //ed dat.dao custom where
+
+        $queryConditions = $queryBuilder->expr()->orX();
+        $queryParameters = array();
+        foreach ($searchableFields as $name => $metadata) {
+            if (in_array($metadata['dataType'], array('text', 'string'))) {
+                $queryConditions->add(sprintf('entity.%s LIKE :query', $name));
+                $queryParameters['query'] = '%'.$searchQuery.'%';
+            } else {
+                $queryConditions->add(sprintf('entity.%s IN (:words)', $name));
+                $queryParameters['words'] = explode(' ', $searchQuery);
+            }
+        }
+
+        $queryBuilder->add('where', $queryConditions)->setParameters($queryParameters);
+
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($queryBuilder, false));
+        $paginator->setMaxPerPage($maxPerPage);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
+    }
+
     /**
      * Performs a database query to get all the records related to the given
      * entity. It supports pagination and field sorting.
@@ -39,17 +81,9 @@ class AdminController extends EasyAdminController
             ->from($entityClass, 'entity')
         ;
 
-        //dat.dao custom where
-        $session = $this
-            ->container
-            ->get('request_stack')
-            ->getCurrentRequest()
-            ->getSession();
-        $lang = $session->get('lang') != null ? $session->get('lang') : LanguageSupport::VietNam;
-        if( ! StringHelper::isMatch($entityClass, array('User')) ) {
-            $query->where('entity.lang = ?1')
-                ->setParameter(1, $lang);
-        }
+        //st dat.dao custom where
+        $query = $this->addWhereForCustom($query, $entityClass);
+        //ed dat.dao custom where
 
         if (null !== $sortField) {
             if (empty($sortDirection) || !in_array(strtoupper($sortDirection), array('ASC', 'DESC'))) {
@@ -64,6 +98,26 @@ class AdminController extends EasyAdminController
         $paginator->setCurrentPage($page);
 
         return $paginator;
+    }
+
+    /**
+     * @author Dat.Dao
+     * @param \Doctrine\ORM\QueryBuilder $query
+     * @param $entityClass
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function addWhereForCustom(\Doctrine\ORM\QueryBuilder $query, $entityClass) {
+        $session = $this
+            ->container
+            ->get('request_stack')
+            ->getCurrentRequest()
+            ->getSession();
+        $lang = $session->get('lang') != null ? $session->get('lang') : LanguageSupport::VietNam;
+        if( ! StringHelper::isMatch($entityClass, array('User')) ) {
+            $query->where('entity.lang = ?1')
+                ->setParameter(1, $lang);
+        }
+        return $query;
     }
 
 
@@ -177,7 +231,30 @@ class AdminController extends EasyAdminController
      */
     public function myConfigAction()
     {
-        return array('name' => 'datdao');
+        $session = $this
+            ->container
+            ->get('request_stack')
+            ->getCurrentRequest()
+            ->getSession();
+        $lang = $session->get('lang') != null ? $session->get('lang') : LanguageSupport::VietNam;
+
+        // create a task and give it some dummy data for this example
+        $myConfig = new MyConfig();
+        $myConfig->setLang($lang);
+
+
+        $form = $this->createFormBuilder($myConfig)
+            ->add('lang', 'choice', array(
+                'choices'  => array('vn' => 'VietNam', 'en' => 'English'),
+                'required' => false,
+            ))
+            ->add('Exporting', 'submit', array('label' => 'Exporting'))
+            ->add('Importing', 'submit', array('label' => 'Importing'))
+            ->getForm();
+
+        return array(
+            'form' => $form->createView(),
+        );
     }
 
 }

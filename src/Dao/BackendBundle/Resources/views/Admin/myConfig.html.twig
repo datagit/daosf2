@@ -17,13 +17,12 @@
 {% block main %}
     <div class="bs-example">
 
-        {#<form action="{{ path('task_new') }}" method="get" {{ form_enctype(form) }}>#}
-        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <form id="form-my-config" name="form-my-config" action="{{ path('admin_my_config') }}" novalidate="novalidate" method="post" {{ form_enctype(form) }}>
         {{ form_errors(form) }}
         <div class="form-group">
             {{ form_label(form.lang,'Chọn ngôn ngữ') }}
             {{ form_errors(form.lang) }}
-            {{ form_widget(form.lang, { 'attr': {'class': 'span3'} }) }}
+            {{ form_widget(form.lang, { 'attr': {'class': 'choise_lang'} }) }}
         </div>
         {{ form_end(form) }}
 
@@ -61,4 +60,14 @@
         {#</form>#}
     </div>
 
+{% endblock %}
+{% block body_javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $( document ).ready( function() {
+            $('.choise_lang').on('change', function(){
+                $('#form-my-config').submit();
+            });
+        });
+    </script>
 {% endblock %}

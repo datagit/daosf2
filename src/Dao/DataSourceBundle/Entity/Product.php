@@ -71,13 +71,6 @@ class Product
      */
     protected $slug;
 
-    /**
-     * The name of the product.
-     *
-     * @var string
-     * @ORM\Column(name="lang", type="string", length=255, nullable=true)
-     */
-    protected $lang = 'en';
 
     /**
      * List of tags associated to the product.
@@ -152,6 +145,13 @@ class Product
      * @ORM\Column(name="updated_at", type="datetime")
      */
     protected $updatedAt = null;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ConfigLang")
+     *
+     * @var ConfigLang;
+     */
+    protected $language;
 
     //st tracking--------------
 
@@ -555,23 +555,20 @@ class Product
     }
 
     /**
-     * @return mixed
+     * @return ConfigLang
      */
-    public function getLang()
+    public function getLanguage()
     {
-        return $this->lang;
+        return $this->language;
     }
 
     /**
-     * @param mixed $lang
-     * @return Product
+     * @param ConfigLang $language
      */
-    public function setLang($lang)
+    public function setLanguage($language)
     {
-        $this->lang = $lang;
-        return $this;
+        $this->language = $language;
     }
-
 
 
 

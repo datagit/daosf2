@@ -105,12 +105,11 @@ class Category
     protected $products;
 
     /**
-     * The name of the product.
+     * @ORM\ManyToOne(targetEntity="ConfigLang")
      *
-     * @var string
-     * @ORM\Column(name="lang", type="string", length=255, nullable=true)
+     * @var ConfigLang;
      */
-    protected $lang = 'en';
+    protected $language;
 
     //st tracking--------------
     /**
@@ -372,21 +371,21 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return ConfigLang
      */
-    public function getLang()
+    public function getLanguage()
     {
-        return $this->lang;
+        return $this->language;
     }
 
     /**
-     * @param mixed $lang
-     * @return Product
+     * @param ConfigLang $language
      */
-    public function setLang($lang)
+    public function setLanguage(ConfigLang $language)
     {
-        $this->lang = $lang;
-        return $this;
+        $this->language = $language;
     }
+
+
 
 }

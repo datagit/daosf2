@@ -58,7 +58,7 @@ easy_admin:
                     - { property: 'parent', label: 'Danh mục cha' }
                     - { property: name, type: 'text', label: 'Danh mục*' }
                     - { property: 'enabled', label: 'Trạng thái(Đang hoạt động, ngưng hoạt động)', type: 'checkbox' }
-                    - { property: 'lang', label: 'Ngôn ngữ', help: 'vn, en' }
+                    - { property: 'language', label: 'Ngôn ngữ' }
 
         Product:
             #disabled_actions: ['delete', 'edit', 'restock']
@@ -97,7 +97,7 @@ easy_admin:
                     - { property: 'features', type: 'textarea', label: 'Tính năng', class: 'none_tinymce', help: '{ "size":"12 x 3 x 10 cm", "color":"white" }' }
                     - { property: 'tags', label: 'Danh sách từ khóa tìm kiếm', help: 'vinamilk, suachua' }
                     - { property: 'enabled', label: 'Trạng thái(Đang hoạt động, ngưng hoạt động)', type: 'checkbox' }
-                    - { property: 'lang', label: 'Ngôn ngữ', help: 'vn, en' }
+                    - { property: 'language', label: 'Ngôn ngữ' }
                     - { property: 'description', label: 'Mô tả chi tiết thông tin sản phẩm' }
 
         #customer entity

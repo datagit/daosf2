@@ -9,9 +9,11 @@ namespace Dao\DataSourceBundle\DataFixtures\ORM;
 
 use Cocur\Slugify\Slugify;
 use Dao\DataSourceBundle\Entity\Category;
+use Dao\DataSourceBundle\Entity\ConfigLang;
 use Dao\DataSourceBundle\Entity\Post;
 use Dao\DataSourceBundle\Entity\Product;
 use Dao\DataSourceBundle\Entity\User;
+use Dao\DataSourceBundle\Utilities\Lang;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -47,10 +49,35 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
         // use the factory to create a Faker\Generator instance
         $faker = \Faker\Factory::create();
 
+        $this->loadLanguage($manager);
         $this->loadCategory($manager, $faker, 100);
-        //$this->loadProduct($manager, $faker, 100);
+        $this->loadProduct($manager, $faker, 100);
 
-        //$this->loadPost($manager, $faker, 100);
+    }
+
+    private function loadLanguage(ObjectManager $manager) {
+        $vietNam = new ConfigLang();
+        $vietNam->setValue('Viet Nam');
+        $manager->persist($vietNam);
+
+        $english = new ConfigLang();
+        $english->setValue('English');
+        $manager->persist($english);
+
+        $manager->flush();
+    }
+
+    private function loadCategory(ObjectManager $manager, \Faker\Generator $faker, $totalRecord) {
+        for($i = 0; $i < $totalRecord; $i++) {
+            $cat = new Category();
+            $cat->setName($this->getRandomPostTitle());
+            //$cat->setLanguage(new ConfigLang($this->getRandomValueInArray(Lang::toArray())));
+            $cat->setEnabled($this->getRandomValueInArray(array(true, false)));
+            $cat->setParent(null);
+            $manager->persist($cat);
+        }
+
+        $manager->flush();
     }
 
     private function loadProduct(ObjectManager $manager, \Faker\Generator $faker, $totalRecord) {
@@ -60,9 +87,9 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
             $product->setName($title);
             $product->setDescription($faker->text());
             $product->setTags($faker->word);
-            $product->setEan($faker->randomDigit);
+            $product->setEan($faker->ean13);
             $product->setEnabled($this->getRandomValueInArray(array(true, false)));
-            $product->setLang($this->getRandomValueInArray(array('en', 'vn')));
+            //$product->setLanguage(new ConfigLang($this->getRandomValueInArray(Lang::toArray())));
             $product->setPrice($faker->randomDigit);
 
             $manager->persist($product);
@@ -71,18 +98,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
-    private function loadCategory(ObjectManager $manager, \Faker\Generator $faker, $totalRecord) {
-        for($i = 0; $i < $totalRecord; $i++) {
-            $cat = new Category();
-            $cat->setName($this->getRandomPostTitle());
-            $cat->setLang($this->getRandomValueInArray(array('en', 'vn')));
-            $cat->setEnabled($this->getRandomValueInArray(array(true, false)));
-            $cat->setParent(null);
-            $manager->persist($cat);
-        }
 
-        $manager->flush();
-    }
 
     private function loadPost(ObjectManager $manager, \Faker\Generator $faker, $totalRecord) {
         $slugify = new Slugify();

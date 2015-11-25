@@ -9,7 +9,10 @@
 namespace Dao\BackendBundle\Controller;
 
 use Dao\BackendBundle\Entity\MyConfig;
+use Dao\DataSourceBundle\Entity\ConfigLang;
+use Dao\DataSourceBundle\Utilities\Lang;
 use Dao\DataSourceBundle\Utilities\LanguageSupport;
+use Dao\DataSourceBundle\Utilities\MySession;
 use Dao\DataSourceBundle\Utilities\StringHelper;
 use Ladybug\Plugin\Symfony2\Inspector\Object\Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -112,10 +115,12 @@ class AdminController extends EasyAdminController
             ->get('request_stack')
             ->getCurrentRequest()
             ->getSession();
-        $lang = $session->get('lang') != null ? $session->get('lang') : LanguageSupport::VietNam;
+        $idLang = $session->get(MySession::LangKey) != null ? $session->get(MySession::LangKey) : Lang::IdVietNam;
         if( ! StringHelper::isMatch($entityClass, array('User')) ) {
-            $query->where('entity.lang = ?1')
-                ->setParameter(1, $lang);
+            $language = new ConfigLang();
+            $language->setId($idLang);
+            $query->where('entity.language = ?1')
+                ->setParameter(1, $language);
         }
         return $query;
     }
@@ -229,32 +234,52 @@ class AdminController extends EasyAdminController
      * @Security("has_role('ROLE_ADMIN')")
      * @Template()
      */
-    public function myConfigAction()
+    public function myConfigAction(\Symfony\Component\HttpFoundation\Request $request)
     {
         $session = $this
             ->container
             ->get('request_stack')
             ->getCurrentRequest()
             ->getSession();
-        $lang = $session->get('lang') != null ? $session->get('lang') : LanguageSupport::VietNam;
+        $idLang = $session->get(MySession::LangKey) != null ? $session->get(MySession::LangKey) : Lang::IdVietNam;
 
         // create a task and give it some dummy data for this example
         $myConfig = new MyConfig();
-        $myConfig->setLang($lang);
+        $myConfig->setLang($idLang);
 
 
         $form = $this->createFormBuilder($myConfig)
             ->add('lang', 'choice', array(
-                'choices'  => array('vn' => 'VietNam', 'en' => 'English'),
+                'choices'  => $this->buildLanguageChoices(),
                 'required' => false,
             ))
             ->add('Exporting', 'submit', array('label' => 'Exporting'))
             ->add('Importing', 'submit', array('label' => 'Importing'))
             ->getForm();
 
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $this
+                ->container
+                ->get('request_stack')
+                ->getCurrentRequest()
+                ->getSession()
+                ->set(MySession::LangKey, $myConfig->getLang());
+        }
+
         return array(
             'form' => $form->createView(),
         );
+    }
+
+    protected function buildLanguageChoices() {
+        $choices          = [];
+        $table2Repository = $this->getDoctrine()->getRepository('DaoDataSourceBundle:ConfigLang');
+        $table2Objects    = $table2Repository->findAll();
+        foreach ($table2Objects as $table2Obj) {
+            $choices[$table2Obj->getId()] = $table2Obj->getValue();
+        }
+        return $choices;
     }
 
 }

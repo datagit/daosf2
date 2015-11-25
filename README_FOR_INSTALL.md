@@ -74,4 +74,6 @@ php app/console fos:user:promote admin ROLE_ADMIN
 php app/console assets:install --symlink
 
 php app/console doctrine:fixtures:load
+
+# remove all foreign key for all tables
 ed EasyAdminBundle--------------------

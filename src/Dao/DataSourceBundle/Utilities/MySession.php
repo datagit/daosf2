@@ -11,6 +11,7 @@ namespace Dao\DataSourceBundle\Utilities;
 
 class MySession
 {
-    const LangKey = 'mycms-lang';
+    const BackendLangKey = 'my-backend-lang';
+    const FrontendLangKey = 'my-frontend-lang';
 
 }

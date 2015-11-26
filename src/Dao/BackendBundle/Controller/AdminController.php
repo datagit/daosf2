@@ -115,7 +115,7 @@ class AdminController extends EasyAdminController
             ->get('request_stack')
             ->getCurrentRequest()
             ->getSession();
-        $idLang = $session->get(MySession::LangKey) != null ? $session->get(MySession::LangKey) : Lang::IdVietNam;
+        $idLang = $session->get(MySession::BackendLangKey) != null ? $session->get(MySession::BackendLangKey) : Lang::IdVietNam;
         if( ! StringHelper::isMatch($entityClass, array('User')) ) {
             $language = new ConfigLang();
             $language->setId($idLang);
@@ -241,7 +241,7 @@ class AdminController extends EasyAdminController
             ->get('request_stack')
             ->getCurrentRequest()
             ->getSession();
-        $idLang = $session->get(MySession::LangKey) != null ? $session->get(MySession::LangKey) : Lang::IdVietNam;
+        $idLang = $session->get(MySession::BackendLangKey) != null ? $session->get(MySession::BackendLangKey) : Lang::IdVietNam;
 
         // create a task and give it some dummy data for this example
         $myConfig = new MyConfig();
@@ -264,7 +264,7 @@ class AdminController extends EasyAdminController
                 ->get('request_stack')
                 ->getCurrentRequest()
                 ->getSession()
-                ->set(MySession::LangKey, $myConfig->getLang());
+                ->set(MySession::BackendLangKey, $myConfig->getLang());
         }
 
         return array(

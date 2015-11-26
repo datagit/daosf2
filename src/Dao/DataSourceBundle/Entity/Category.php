@@ -50,7 +50,7 @@ class Category
      * @ORM\OneToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      **/
-    protected $parent = 0;
+    protected $parent = null;
 
     /**
      * The category name.
@@ -106,6 +106,7 @@ class Category
 
     /**
      * @ORM\ManyToOne(targetEntity="ConfigLang")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id", nullable=true)
      *
      * @var ConfigLang;
      */
@@ -152,7 +153,7 @@ class Category
      */
     public function __construct() {
         //Initialize product as a Doctrine Collection
-        $this->products = new ArrayCollection();
+        //$this->products = new ArrayCollection();
         //$this->createdAt = new \DateTime();
     }
 

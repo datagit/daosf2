@@ -148,6 +148,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity="ConfigLang")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
      *
      * @var ConfigLang;
      */

@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Class ConfigLang
  * @package Dao\DataSourceBundle\Entity
- * @ORM\Table(name="config_lang")
+ * @ORM\Table(name="_config_lang")
  * @ORM\Entity(repositoryClass="Dao\DataSourceBundle\Repository\ConfigLangRepository")
  */
 class ConfigLang
@@ -73,11 +73,6 @@ class ConfigLang
     public function __toString()
     {
         return $this->value;
-    }
-
-    public function __construct($id = null) {
-        $this->id = $id;
-        return $this;
     }
 
 

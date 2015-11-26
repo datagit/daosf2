@@ -68,10 +68,13 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
     }
 
     private function loadCategory(ObjectManager $manager, \Faker\Generator $faker, $totalRecord) {
+        $langVN = $manager->getRepository('DaoDataSourceBundle:ConfigLang')->findOneBy(array('id' => Lang::IdVietNam ));
+        $langEN = $manager->getRepository('DaoDataSourceBundle:ConfigLang')->findOneBy(array('id' => Lang::IdEnglish ));
+
         for($i = 0; $i < $totalRecord; $i++) {
             $cat = new Category();
             $cat->setName($this->getRandomPostTitle());
-            //$cat->setLanguage(new ConfigLang($this->getRandomValueInArray(Lang::toArray())));
+            $cat->setLanguage($this->getRandomValueInArray(array($langVN, $langEN)));
             $cat->setEnabled($this->getRandomValueInArray(array(true, false)));
             $cat->setParent(null);
             $manager->persist($cat);
@@ -81,6 +84,9 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
     }
 
     private function loadProduct(ObjectManager $manager, \Faker\Generator $faker, $totalRecord) {
+        $langVN = $manager->getRepository('DaoDataSourceBundle:ConfigLang')->findOneBy(array('id' => Lang::IdVietNam ));
+        $langEN = $manager->getRepository('DaoDataSourceBundle:ConfigLang')->findOneBy(array('id' => Lang::IdEnglish ));
+
         for($i = 0; $i < $totalRecord; $i++) {
             $title = $faker->sentence(rand(1,3));
             $product = new Product();
@@ -89,7 +95,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
             $product->setTags($faker->word);
             $product->setEan($faker->ean13);
             $product->setEnabled($this->getRandomValueInArray(array(true, false)));
-            //$product->setLanguage(new ConfigLang($this->getRandomValueInArray(Lang::toArray())));
+            $product->setLanguage($this->getRandomValueInArray(array($langVN, $langEN)));
             $product->setPrice($faker->randomDigit);
 
             $manager->persist($product);

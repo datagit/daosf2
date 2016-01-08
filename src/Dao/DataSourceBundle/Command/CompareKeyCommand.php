@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Yaml;
 
 class CompareKeyCommand extends ContainerAwareCommand
 {
@@ -38,8 +39,7 @@ class CompareKeyCommand extends ContainerAwareCommand
         $compareWith = array('parameters.yml', 'parameters_dev.yml', 'parameters_test.yml', 'parameters_prod.yml');
         $configPath = $this->getContainer()->get('kernel')->getRootDir() . '/config';
 
-        $yaml = new Parser();
-        $originValue = $yaml->parse(file_get_contents($configPath . '/' . $origin));
+        $originValue = Yaml::parse(file_get_contents($configPath . '/' . $origin));
 
         //compare all keys
         $inValidEnvironment = array();
@@ -47,7 +47,7 @@ class CompareKeyCommand extends ContainerAwareCommand
         $missKeys = array();
         if(empty ($key)) {
             foreach($compareWith as $e) {
-                $envValue = $yaml->parse(file_get_contents($configPath . '/' . $e));
+                $envValue = Yaml::parse(file_get_contents($configPath . '/' . $e));
                 if(! $this->compareKey($originValue['parameters'], $envValue['parameters'], $missKeys)) {
                     $inValidEnvironment[] = $e;
                     $isMiss = true;
@@ -55,13 +55,25 @@ class CompareKeyCommand extends ContainerAwareCommand
             }
         } else {
             foreach($compareWith as $e) {
-                $envValue = $yaml->parse(file_get_contents($configPath . '/' . $e));
+                $envValue = Yaml::parse(file_get_contents($configPath . '/' . $e));
                 if(! $this->compareKey($originValue['parameters'], $envValue['parameters'], $missKeys, $key)) {
                     $inValidEnvironment[] = $e;
                     $isMiss = true;
                 }
             }
         }
+
+        //modified value in parameter
+        if(! $isMiss) {
+            foreach($compareWith as $e) {
+                $NewEnvValue = Yaml::parse(file_get_contents($configPath . '/' . $e));
+                $NewEnvValue['parameters']['assets_version'] = time();
+                $str = Yaml::dump($NewEnvValue);
+                //save to modify
+                file_put_contents($configPath . '/' . $e, $str);
+            }
+        }
+
 
         # Exit status 0 returned because command executed successfully.
         $statusCode = 0;

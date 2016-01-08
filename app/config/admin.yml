@@ -1,6 +1,6 @@
 #sdocument: https://github.com/javiereguiluz/EasyAdminBundle
 easy_admin:
-    site_name: My CMS
+    site_name: ABC
     formats:
         date:     'd/m/Y'
         time:     'H:i'

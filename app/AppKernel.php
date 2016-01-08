@@ -24,8 +24,8 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new \Dao\ExamplesBundle\DaoExamplesBundle(),
-            new \Dao\DataSourceBundle\DaoDataSourceBundle(),
+            new Dao\ExamplesBundle\DaoExamplesBundle(),
+            new Dao\DataSourceBundle\DaoDataSourceBundle(),
             new Dao\BackendBundle\DaoBackendBundle(),
             new Dao\FrontendBundle\DaoFrontendBundle(),
         );
@@ -40,6 +40,8 @@ class AppKernel extends Kernel
             $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle();
+
+            $bundles[] = new JMS\DebuggingBundle\JMSDebuggingBundle($this);
 
         }
 

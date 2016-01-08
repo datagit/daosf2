@@ -24,7 +24,7 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        #assets_version: SomeVersionScheme
+        assets_version: "%assets_version%"
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -130,3 +130,8 @@ stof_doctrine_extensions:
             translatable: true
             loggable: true
 # ed user install
+jms_debugging:
+    # You can set this to true if you want to automatically retrieve help
+    # messages for public exceptions. If you leave this set to false, you have
+    # to click the "search" button manually each time.
+    auto_help: true

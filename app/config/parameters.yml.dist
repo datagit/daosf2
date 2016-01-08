@@ -17,6 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    assets_version: 1451891657
     # admin web root
     web_root: http://localhost/dao/daosf2/web
 

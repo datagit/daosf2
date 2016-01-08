@@ -1,4 +1,3 @@
-# This file is auto-generated during the composer install
 parameters:
     database_host: 127.0.0.1
     database_port: null
@@ -10,16 +9,12 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 9e8832766c042040f5e84a4a1d0af2fc271e666d
+    assets_version: 1451891657
+    database_driver: pdo_mysql
+    database_path: null
     web_root: 'http://localhost/myproject/DaoSf2/web'
-
     miss_key1: anc3
-    miss_key2:
-      abc1: 12121
-      abc2: 3232
-    miss_key3: ['twig.extension.foo', 'twig.extension.bar']
-    miss_key4:
-      - [10.100.0.36:11211]
-    miss_key5:
-      en_SG:
-        - {'Link text 1': 'http://www.hungrygowhere.com'}
-        - {'Link text 2': 'http://www.hungrygowhere.com'}
+    miss_key2: { abc1: 12121, abc2: 3232 }
+    miss_key3: [twig.extension.foo, twig.extension.bar]
+    miss_key4: [['10.100.0.36:11211']]
+    miss_key5: { en_SG: [{ 'Link text 1': 'http://www.hungrygowhere.com' }, { 'Link text 2': 'http://www.hungrygowhere.com' }] }
